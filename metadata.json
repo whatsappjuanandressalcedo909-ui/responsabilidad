@@ -1,0 +1,6 @@
+{
+  "name": "CoR Masterclass",
+  "description": "Plataforma educativa e interactiva para la presentación, simulación y evaluación del patrón de diseño Cadena de Responsabilidad (Chain of Responsibility).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
