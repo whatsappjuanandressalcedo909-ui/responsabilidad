@@ -1,6 +1,4 @@
-/**
- * Representa la solicitud (Request) que pasará a través de la Cadena de Responsabilidad.
- */
+
 export interface MessageRequest {
   text: string;
   originalText: string;
@@ -24,25 +22,16 @@ export interface Handler {
   handle(request: MessageRequest): MessageRequest;
 }
 
-/**
- * Clase BaseHandler que implementa el comportamiento por defecto de la cadena de llamadas recursivas.
- * Permite que los manejadores concretos solo se enfoquen en su responsabilidad única (SRP).
- */
 export abstract class BaseHandler implements Handler {
   private nextHandler: Handler | null = null;
 
-  /**
-   * Vincula el siguiente manejador en la secuencia.
-   * Criterio Académico: Retornar el manejador pasado permite el encadenamiento fluido (fluent interface).
-   */
+
   public setNext(handler: Handler): Handler {
     this.nextHandler = handler;
     return handler;
   }
 
-  /**
-   * Comportamiento estándar: si hay un siguiente eslabón, delega la ejecución; si no, finaliza de manera segura.
-   */
+
   public handle(request: MessageRequest): MessageRequest {
     if (this.nextHandler) {
       return this.nextHandler.handle(request);
@@ -52,10 +41,7 @@ export abstract class BaseHandler implements Handler {
   }
 }
 
-/**
- * Eslabón 1: Validador de Tamaño y Sintaxis básica.
- * Verifica que el mensaje no esté vacío o sea excesivamente largo.
- */
+
 export class SizeValidationHandler extends BaseHandler {
   public override handle(request: MessageRequest): MessageRequest {
     const len = request.text.trim().length;
@@ -79,10 +65,7 @@ export class SizeValidationHandler extends BaseHandler {
   }
 }
 
-/**
- * Eslabón 2: Sanitizador de Scripts y Código Malicioso.
- * Busca patrones HTML, `<script>`, o inyecciones SQL sospechosas para eliminarlas.
- */
+
 export class SecuritySanitizationHandler extends BaseHandler {
   public override handle(request: MessageRequest): MessageRequest {
     const rxScript = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
@@ -101,7 +84,7 @@ export class SecuritySanitizationHandler extends BaseHandler {
       modifiedText = modifiedText.replace(rxHTML, " ");
     }
 
-    // Detectar inyecciones SQL comunes
+
     const rxSQL = /\b(UNION SELECT|DROP DATABASE|DROP TABLE|OR 1=1)\b/gi;
     if (rxSQL.test(modifiedText)) {
       detected = true;
@@ -122,16 +105,10 @@ export class SecuritySanitizationHandler extends BaseHandler {
   }
 }
 
-/**
- * Eslabón 3: Enmascarador de Datos Sensibles (PII - Personally Identifiable Information).
- * Reemplaza correos y números de tarjetas con asteriscos para cumplir con normas de privacidad (GDPR).
- */
+
 export class PIIMaskHandler extends BaseHandler {
   public override handle(request: MessageRequest): MessageRequest {
-    // Regex de correo electrónico básico
     const rxEmail = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
-    
-    // Regex para tarjetas de crédito comunes (16 dígitos continuos o separados por guiones o espacios)
     const rxCard = /\b(?:\d[ -]*?){13,16}\b/g;
 
     let modifiedText = request.text;
@@ -170,10 +147,7 @@ export class PIIMaskHandler extends BaseHandler {
   }
 }
 
-/**
- * Eslabón 4: Filtro de Palabras Ofensivas y Reglas de Cortesía (Censura Académica).
- * Suaviza términos inadecuados de forma constructiva.
- */
+
 export class ProfanityFilterHandler extends BaseHandler {
   private static FORBIDDEN_WORDS = [
     { regex: /\b(idiota|inutil|inservible|estupido|basura|porqueria)\b/gi, replacement: "🤬 [Censurado]" },
@@ -203,10 +177,7 @@ export class ProfanityFilterHandler extends BaseHandler {
   }
 }
 
-/**
- * Eslabón 5: Detector Inteligente de Prioridades.
- * Asigna la prioridad según palabras clave en el contenido definitivo.
- */
+
 export class PriorityDetectorHandler extends BaseHandler {
   public override handle(request: MessageRequest): MessageRequest {
     const rxCritical = /\b(urgente|colapso|estafa|fraude|caida|robado|critico|bloqueado)\b/gi;
