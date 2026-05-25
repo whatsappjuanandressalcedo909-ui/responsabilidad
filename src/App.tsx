@@ -16,8 +16,7 @@ export default function App() {
     { id: "presentacion" as SectionTab, label: "Presentación (Diapo)", icon: BookOpen },
     { id: "uml" as SectionTab, label: "Diagrama UML clases", icon: Layers },
     { id: "simulador" as SectionTab, label: "Simulador de Flujo", icon: Activity },
-    { id: "codigo" as SectionTab, label: "Workbench Código (IDE)", icon: Code },
-    { id: "talleres" as SectionTab, label: "Taller Académico", icon: GraduationCap }
+    { id: "codigo" as SectionTab, label: "Workbench Código (IDE)", icon: Code }
   ];
 
   // Permite saltar entre secciones de forma dinámica desde los slides interactivos
