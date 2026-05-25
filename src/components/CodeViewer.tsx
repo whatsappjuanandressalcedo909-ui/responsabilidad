@@ -290,26 +290,26 @@ export class SoporteNivel2 extends BaseHandler {
   };
 
   return (
-    <div id="visor-codigo" className="bg-slate-900/60 p-5 rounded-xl border border-slate-800 flex flex-col gap-5">
+    <div id="visor-codigo" className="bg-white p-5 rounded-xl border border-slate-200 flex flex-col gap-5 shadow-xs">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h4 className="text-sm font-semibold tracking-wide uppercase text-teal-400 mb-1 flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-teal-400"></span> Código de Ejemplo Implementado
+          <h4 className="text-sm font-bold tracking-wide uppercase text-indigo-700 mb-1 flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-indigo-650 bg-indigo-600"></span> Código de Ejemplo Implementado
           </h4>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-650 text-slate-600">
             Explora las clases separadas y listas para compilar. El código posee comentarios académicos y nombres autodescriptivos como exige la rúbrica.
           </p>
         </div>
 
         {/* Selector de Lenguaje */}
-        <div className="flex bg-slate-950 p-1 rounded-lg border border-slate-800">
+        <div className="flex bg-slate-100 p-1 rounded-lg border border-slate-200">
           <button
             onClick={() => {
               setActiveLang("java");
               setActiveFileIdx(0);
             }}
             className={`text-xs px-3 py-1.5 rounded-md font-bold transition flex items-center gap-1.5 cursor-pointer ${
-              activeLang === "java" ? "bg-indigo-600 text-white" : "text-slate-400 hover:text-slate-200"
+              activeLang === "java" ? "bg-indigo-600 text-white shadow-xs" : "text-slate-600 hover:text-slate-800"
             }`}
           >
             Java (Rubrica Recomendado)
@@ -320,7 +320,7 @@ export class SoporteNivel2 extends BaseHandler {
               setActiveFileIdx(0);
             }}
             className={`text-xs px-3 py-1.5 rounded-md font-bold transition flex items-center gap-1.5 cursor-pointer ${
-              activeLang === "ts" ? "bg-indigo-600 text-white" : "text-slate-400 hover:text-slate-200"
+              activeLang === "ts" ? "bg-indigo-600 text-white shadow-xs" : "text-slate-600 hover:text-slate-800"
             }`}
           >
             TypeScript
@@ -331,9 +331,9 @@ export class SoporteNivel2 extends BaseHandler {
       {/* Editor simulado */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
         {/* Explorador de archivos (Lateral) */}
-        <div className="bg-slate-950 p-3 rounded-lg border border-slate-800 flex flex-col gap-2">
+        <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 flex flex-col gap-2">
           <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider flex items-center gap-1.5">
-            <Folder className="h-3.5 w-3.5 text-yellow-500" /> upc.patrones.cor
+            <Folder className="h-3.5 w-3.5 text-amber-500" /> upc.patrones.cor
           </span>
 
           <div className="flex flex-col gap-1">
@@ -342,47 +342,47 @@ export class SoporteNivel2 extends BaseHandler {
                 key={file.name}
                 onClick={() => setActiveFileIdx(idx)}
                 className={`w-full text-left p-2 rounded text-xs font-mono flex items-center justify-between transition cursor-pointer ${
-                  idx === safeFileIdx ? "bg-slate-808/80 text-indigo-400 border-l-2 border-indigo-505" : "text-slate-400 hover:bg-slate-900 hover:text-slate-250"
+                  idx === safeFileIdx ? "bg-indigo-50 text-indigo-700 border-l-2 border-indigo-650 border-indigo-600 font-bold" : "text-slate-600 hover:bg-slate-100 hover:text-slate-800"
                 }`}
               >
                 <div className="flex items-center gap-1.5 truncate">
-                  <FileCode className={`h-4 w-4 ${idx === safeFileIdx ? "text-indigo-400" : "text-slate-400"}`} />
+                  <FileCode className={`h-4 w-4 ${idx === safeFileIdx ? "text-indigo-600" : "text-slate-500"}`} />
                   <span className="truncate">{file.name}</span>
                 </div>
-                <span className="text-[8px] bg-slate-900 text-slate-500 border border-slate-850 px-1 py-0.2 rounded uppercase font-semibold">
+                <span className="text-[8px] bg-slate-100 text-slate-600 border border-slate-205 border-slate-200 px-1 py-0.2 rounded uppercase font-semibold">
                   {file.role}
                 </span>
               </button>
             ))}
           </div>
 
-          <div className="mt-4 border-t border-slate-930 pt-3 flex flex-col gap-2">
-            <div className="bg-amber-500/5 p-2 rounded border border-amber-500/10 flex items-start gap-1.5">
-              <AlertTriangle className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
-              <div className="text-[10px] text-amber-300 leading-relaxed font-sans">
-                <span className="font-bold text-slate-200">Estructura Desacoplada:</span> Los manejadores concretos no se conocen entre sí.
-                Solo dependen de la abstracción <code className="bg-slate-905 border px-1 border-slate-800 py-0.2">Handler</code>.
+          <div className="mt-4 border-t border-slate-200 pt-3 flex flex-col gap-2">
+            <div className="bg-amber-50 p-2 rounded border border-amber-200 flex items-start gap-1.5">
+              <AlertTriangle className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+              <div className="text-[10px] text-amber-900 leading-relaxed font-sans">
+                <span className="font-bold text-slate-800">Estructura Desacoplada:</span> Los manejadores concretos no se conocen entre sí.
+                Solo dependen de la abstracción <code className="bg-slate-100 border px-1 border-slate-205 border-slate-250 border-slate-200 py-0.2">Handler</code>.
               </div>
             </div>
           </div>
         </div>
 
         {/* Panel de Visualización del código */}
-        <div className="lg:col-span-3 flex flex-col justify-between bg-slate-950 rounded-lg border border-slate-800">
+        <div className="lg:col-span-3 flex flex-col justify-between bg-slate-50 rounded-lg border border-slate-200">
           {/* Cabecera del archivo en el editor */}
-          <div className="flex justify-between items-center bg-slate-900 px-4 py-2 rounded-t-lg border-b border-slate-800">
+          <div className="flex justify-between items-center bg-slate-200/60 px-4 py-2 rounded-t-lg border-b border-slate-200">
             <div className="flex items-center gap-2">
-              <FileCode className="h-4 w-4 text-indigo-400" />
-              <span className="text-xs font-mono font-bold text-slate-200">{activeFile.name}</span>
+              <FileCode className="h-4 w-4 text-indigo-655 text-indigo-600" />
+              <span className="text-xs font-mono font-bold text-slate-800">{activeFile.name}</span>
             </div>
 
             <button
               onClick={handleCopy}
-              className="text-[10px] text-slate-400 hover:text-slate-200 bg-slate-950 border border-slate-800 py-1 px-2.5 rounded hover:bg-slate-850 transition flex items-center gap-1.5 font-semibold cursor-pointer"
+              className="text-[10px] text-slate-700 hover:text-slate-900 bg-white border border-slate-350 border-slate-300 py-1 px-2.5 rounded hover:bg-slate-100 shadow-2xs transition flex items-center gap-1.5 font-semibold cursor-pointer"
             >
               {copied ? (
                 <>
-                  <Check className="h-3 w-3 text-emerald-400" /> Copiado
+                  <Check className="h-3 w-3 text-emerald-600" /> Copiado
                 </>
               ) : (
                 <>
@@ -394,12 +394,12 @@ export class SoporteNivel2 extends BaseHandler {
 
           {/* Explicación y Código */}
           <div className="p-4 flex flex-col gap-3 font-sans">
-            <div className="bg-slate-905 p-2.5 rounded border-l-2 border-indigo-500 text-xs text-slate-300 border border-slate-800">
-              <span className="font-bold text-indigo-400 uppercase tracking-widest text-[9px] block mb-1">Análisis Académico</span>
+            <div className="bg-indigo-50 p-2.5 rounded border-l-2 border-indigo-600 text-xs text-slate-700 border border-indigo-200/50">
+              <span className="font-bold text-indigo-700 uppercase tracking-widest text-[9px] block mb-1">Análisis Académico</span>
               {activeFile.explanation}
             </div>
 
-            <pre className="text-[11px] font-mono p-4 rounded bg-slate-900 overflow-x-auto text-slate-200 border border-slate-900/60 max-h-[340px] leading-relaxed">
+            <pre className="text-[11px] font-mono p-4 rounded bg-white overflow-x-auto text-slate-800 border border-slate-200 max-h-[340px] leading-relaxed shadow-3xs">
               <code>{activeFile.content}</code>
             </pre>
           </div>
@@ -407,24 +407,24 @@ export class SoporteNivel2 extends BaseHandler {
       </div>
 
       {/* Contraste: Antipatrón (Problema) vs. Chain of Responsibility (Solución) */}
-      <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
-        <h5 className="text-[10px] uppercase font-bold text-rose-400 tracking-wider mb-3 flex items-center gap-1.5">
+      <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+        <h5 className="text-[10px] uppercase font-bold text-indigo-600 tracking-wider mb-2 flex items-center gap-1.5">
           <Sparkles className="h-3.5 w-3.5" /> Comparativa y Beneficio: ¿Por qué aplicar este patrón?
         </h5>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Problema (Antipatrón - IF/ELSE Hell) */}
-          <div className="bg-rose-950/10 p-3.5 rounded-lg border border-rose-900/20">
+          <div className="bg-rose-50 p-3.5 rounded-lg border border-rose-200">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-xs font-bold text-rose-400 flex items-center gap-1.5">
+              <span className="text-xs font-bold text-rose-700 flex items-center gap-1.5">
                 ❌ Código Sin Patrón (Uso Extremo de Condicionales)
               </span>
               <span className="text-[9px] font-mono text-rose-500 uppercase font-bold">Problema</span>
             </div>
-            <p className="text-[11px] text-slate-400 mb-3 leading-relaxed">
+            <p className="text-[11px] text-slate-600 mb-2 leading-relaxed">
               Sin la Cadena de Responsabilidad, el emisor coordina todo el ruteo mediante bloques masivos de <code>if-else</code>. Si agregamos un nuevo nivel de soporte, violamos el principio Abierto/Cerrado (OCP).
             </p>
-            <pre className="text-[10px] font-mono bg-slate-900 p-2.5 rounded text-rose-300 max-h-[140px] overflow-y-auto">
+            <pre className="text-[10px] font-mono bg-white p-2.5 rounded text-rose-900 max-h-[140px] overflow-y-auto border border-rose-100 shadow-2xs">
 {`// Acoplamiento severo y monolítico
 public class SoporteCliente {
     public void despacharIncidente(Request request) {
@@ -445,17 +445,17 @@ public class SoporteCliente {
           </div>
 
           {/* Solución (Con Patrón) */}
-          <div className="bg-emerald-950/10 p-3.5 rounded-lg border border-emerald-900/20">
+          <div className="bg-emerald-50 p-3.5 rounded-lg border border-emerald-200">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
+              <span className="text-xs font-bold text-emerald-700 flex items-center gap-1.5">
                 ✅ Con Patrón Cadena de Responsabilidad
               </span>
               <span className="text-[9px] font-mono text-emerald-500 uppercase font-bold">Solución</span>
             </div>
-            <p className="text-[11px] text-slate-400 mb-3 leading-relaxed">
+            <p className="text-[11px] text-slate-605 text-slate-600 mb-2 leading-relaxed">
               El cliente solo conoce la interfaz abstracta del primer manejador. Añadir nuevos eslabones o reordenar la cadena se hace reensamblando en un solo punto, sin tocar las clases existentes de soporte.
             </p>
-            <pre className="text-[10px] font-mono bg-slate-900 p-2.5 rounded text-emerald-300 max-h-[140px] overflow-y-auto">
+            <pre className="text-[10px] font-mono bg-white p-2.5 rounded text-emerald-900 max-h-[140px] overflow-y-auto border border-emerald-100 shadow-2xs">
 {`// Código limpio, modular y extensible
 public class ClienteLimpio {
     public void procesarSeguro(Handler soporteInicial, Request req) {

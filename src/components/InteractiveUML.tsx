@@ -229,20 +229,20 @@ export class SoporteNivel2 extends BaseHandler {
   const selectedNode = nodes.find(n => n.id === selectedNodeId) || nodes[1];
 
   return (
-    <div id="uml-interactivo" className="grid grid-cols-1 lg:grid-cols-12 gap-6 bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+    <div id="uml-interactivo" className="grid grid-cols-1 lg:grid-cols-12 gap-6 bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-slate-800">
       {/* Columna Izquierda: Diagrama Interactivo */}
       <div className="lg:col-span-7 flex flex-col justify-between">
         <div>
-          <h4 className="text-sm font-semibold tracking-wide uppercase text-indigo-400 mb-1 flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-indigo-400 animate-pulse"></span> Diagrama UML de Clases Interactivo
+          <h4 className="text-sm font-semibold tracking-wide uppercase text-indigo-700 mb-1 flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-indigo-600 animate-pulse"></span> Diagrama UML de Clases Interactivo
           </h4>
-          <p className="text-xs text-slate-400 mb-4">
+          <p className="text-xs text-slate-500 mb-4">
             Selecciona un componente del diagrama para auditar sus responsabilidades, relaciones e implementaciones de código.
           </p>
         </div>
 
         {/* Contenedor del SVG adaptable */}
-        <div className="relative border border-slate-800 rounded-lg bg-slate-950 p-2 overflow-x-auto select-none font-sans">
+        <div className="relative border border-slate-200 rounded-lg bg-slate-50 p-2 overflow-x-auto select-none font-sans">
           <svg viewBox="0 0 760 550" className="w-full min-w-[700px] h-[480px]">
             {/* Definiciones de Flechas y Gradientes */}
             <defs>
@@ -253,30 +253,26 @@ export class SoporteNivel2 extends BaseHandler {
                 <polygon points="0,0 10,5 0,10" fill="none" stroke="#64748b" strokeWidth="1.5" />
               </marker>
               <marker id="realize" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                <polygon points="0,0 10,5 0,10" fill="none" stroke="#6366f1" strokeWidth="1.5" />
+                <polygon points="0,0 10,5 0,10" fill="none" stroke="#4f46e5" strokeWidth="1.5" />
               </marker>
-              <linearGradient id="selectedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#1e1b4b" />
-                <stop offset="100%" stopColor="#0f172a" />
-              </linearGradient>
             </defs>
 
             {/* Relación: Cliente -> Handler (Asociación) */}
             <line x1="230" y1="95" x2="330" y2="95" stroke="#64748b" strokeWidth="2" strokeDasharray="4 4" markerEnd="url(#arrow)" />
-            <text x="245" y="85" fill="#94a3b8" className="text-[10px] font-semibold">Instancia y usa</text>
+            <text x="245" y="85" fill="#475569" className="text-[10px] font-semibold">Instancia y usa</text>
 
             {/* Relación: BaseHandler realiza Handler (Implementación de interfaz) */}
-            <line x1="450" y1="150" x2="450" y2="200" stroke="#6366f1" strokeWidth="2" strokeDasharray="4 2" markerEnd="url(#realize)" />
-            <text x="458" y="180" fill="#818cf8" className="text-[10px] font-bold">implements</text>
+            <line x1="450" y1="150" x2="450" y2="200" stroke="#4f46e5" strokeWidth="2" strokeDasharray="4 2" markerEnd="url(#realize)" />
+            <text x="458" y="180" fill="#4f46e5" className="text-[10px] font-bold">implements</text>
 
             {/* Relación de Recursividad: BaseHandler tiene referencia next (Sucesión) */}
-            <path d="M 560 235 L 610 235 L 610 290 L 570 290" fill="none" stroke="#f43f5e" strokeWidth="2" markerEnd="url(#arrow)" />
-            <text x="618" y="260" fill="#fda4af" className="text-[10px] font-bold">next: Handler</text>
+            <path d="M 560 235 L 610 235 L 610 290 L 570 290" fill="none" stroke="#e11d48" strokeWidth="2" markerEnd="url(#arrow)" />
+            <text x="618" y="260" fill="#be123c" className="text-[10px] font-bold">next: Handler</text>
 
             {/* Relaciones de Herencia: ConcreteA y ConcreteB extiendan BaseHandler */}
-            <path d="M 305 400 L 305 370 L 450 370 L 450 350" fill="none" stroke="#3b82f6" strokeWidth="2" markerEnd="url(#generalize)" />
-            <path d="M 595 400 L 595 370 L 450 370 L 450 350" fill="none" stroke="#3b82f6" strokeWidth="2" markerEnd="url(#generalize)" />
-            <text x="350" y="382" fill="#60a5fa" className="text-[10px] font-semibold">extends (hereda campos y fallback)</text>
+            <path d="M 305 400 L 305 370 L 450 370 L 450 350" fill="none" stroke="#2563eb" strokeWidth="2" markerEnd="url(#generalize)" />
+            <path d="M 595 400 L 595 370 L 450 370 L 450 350" fill="none" stroke="#2563eb" strokeWidth="2" markerEnd="url(#generalize)" />
+            <text x="350" y="382" fill="#1d4ed8" className="text-[10px] font-semibold">extends (hereda campos y fallback)</text>
 
             {/* Dibuja los Nodos */}
             {nodes.map(node => {
@@ -285,17 +281,13 @@ export class SoporteNivel2 extends BaseHandler {
               const isAbstract = node.type === "Abstract";
               const isClient = node.type === "Client";
 
-              let strokeColor = "stroke-slate-700";
-              let headerColor = "bg-slate-800 text-slate-300";
-              let titleColor = "text-slate-200";
-
+              let strokeColor = "stroke-slate-300";
               if (isSelected) {
-                strokeColor = "stroke-indigo-500";
-                headerColor = "bg-indigo-500/20 text-indigo-300";
+                strokeColor = "stroke-indigo-600";
               } else {
-                if (isInterface) strokeColor = "stroke-indigo-700";
-                else if (isAbstract) strokeColor = "stroke-purple-700";
-                else if (isClient) strokeColor = "stroke-slate-600";
+                if (isInterface) strokeColor = "stroke-indigo-400";
+                else if (isAbstract) strokeColor = "stroke-purple-400";
+                else if (isClient) strokeColor = "stroke-slate-400";
               }
 
               return (
@@ -311,9 +303,9 @@ export class SoporteNivel2 extends BaseHandler {
                     width={node.width}
                     height={node.height}
                     rx="6"
-                    className={`fill-slate-900/90 ${strokeColor}`}
+                    className={`fill-white ${strokeColor}`}
                     strokeWidth={isSelected ? 3 : 1.5}
-                    filter={isSelected ? "drop-shadow(0 0 8px rgba(99,102,241,0.35))" : ""}
+                    filter={isSelected ? "drop-shadow(0 0 8px rgba(99,102,241,0.2))" : ""}
                   />
 
                   {/* Cabecera / Estereotipo */}
@@ -323,7 +315,7 @@ export class SoporteNivel2 extends BaseHandler {
                     width={node.width - 2}
                     height={32}
                     rx="5"
-                    className={isSelected ? "fill-indigo-950/70" : "fill-slate-800/80"}
+                    className={isSelected ? "fill-indigo-50/70" : "fill-slate-100/90"}
                   />
                   
                   {/* Etiqueta tipo de clase */}
@@ -331,7 +323,7 @@ export class SoporteNivel2 extends BaseHandler {
                     x={node.x + node.width / 2}
                     y={node.y + 14}
                     textAnchor="middle"
-                    className="text-[9px] font-bold tracking-wider fill-slate-400 uppercase"
+                    className="text-[9px] font-bold tracking-wider fill-slate-550 fill-slate-500 uppercase"
                   >
                     {isInterface ? "«interface»" : isAbstract ? "«abstract class»" : isClient ? "«client entry»" : "«concrete class»"}
                   </text>
@@ -341,18 +333,18 @@ export class SoporteNivel2 extends BaseHandler {
                     x={node.x + node.width / 2}
                     y={node.y + 26}
                     textAnchor="middle"
-                    className={`text-xs font-bold ${isSelected ? "fill-indigo-300" : "fill-slate-200"}`}
+                    className={`text-xs font-bold ${isSelected ? "fill-indigo-900" : "fill-slate-800"}`}
                   >
                     {node.name.split(" (")[0]}
                   </text>
 
                   {/* Atributos */}
                   {node.attributes.length > 0 ? (
-                    <text x={node.x + 12} y={node.y + 52} className="text-[10px] font-mono fill-slate-300">
+                    <text x={node.x + 12} y={node.y + 52} className="text-[10px] font-mono fill-slate-700">
                       - {node.attributes[0]}
                     </text>
                   ) : (
-                    <text x={node.x + 12} y={node.y + 52} className="text-[10px] italic fill-slate-500">
+                    <text x={node.x + 12} y={node.y + 52} className="text-[10px] italic fill-slate-400">
                       Ningún atributo
                     </text>
                   )}
@@ -363,9 +355,9 @@ export class SoporteNivel2 extends BaseHandler {
                     y1={node.y + 64}
                     x2={node.x + node.width}
                     y2={node.y + 64}
-                    stroke={isSelected ? "#6366f1" : "#334155"}
+                    stroke={isSelected ? "#6366f1" : "#e2e8f0"}
                     strokeWidth={1}
-                    strokeOpacity={0.5}
+                    strokeOpacity={0.8}
                   />
 
                   {/* Métodos */}
@@ -374,7 +366,7 @@ export class SoporteNivel2 extends BaseHandler {
                       key={method}
                       x={node.x + 12}
                       y={node.y + 82 + idx * 16}
-                      className="text-[10px] font-mono fill-slate-300"
+                      className="text-[10px] font-mono fill-slate-750 fill-slate-700"
                     >
                       + {method}
                     </text>
@@ -385,81 +377,80 @@ export class SoporteNivel2 extends BaseHandler {
           </svg>
         </div>
       </div>
-
-      {/* Columna Derecha: Inspector Académico y código */}
+                 {/* Columna Derecha: Inspector Académico y código */}
       <div className="lg:col-span-5 flex flex-col justify-between">
-        <div className="bg-slate-950 p-5 rounded-lg border border-slate-800 h-full flex flex-col justify-between">
+        <div className="bg-slate-50 p-5 rounded-lg border border-slate-200 h-full flex flex-col justify-between shadow-xs">
           <div>
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-3 mb-4">
               <div className="flex items-center gap-2">
-                <Layers className="h-5 w-5 text-indigo-400" />
-                <h5 className="font-bold text-slate-100">{selectedNode.name}</h5>
+                <Layers className="h-5 w-5 text-indigo-600" />
+                <h5 className="font-bold text-slate-900">{selectedNode.name}</h5>
               </div>
-              <span className="text-[10px] px-2 py-0.5 bg-slate-850 rounded font-semibold text-slate-400 uppercase tracking-widest border border-slate-700">
+              <span className="text-[10px] px-2 py-0.5 bg-indigo-50 rounded font-bold text-indigo-700 uppercase tracking-widest border border-indigo-100">
                 {selectedNode.type}
               </span>
             </div>
 
-            <p className="text-xs text-slate-300 leading-relaxed mb-4">
+            <p className="text-xs text-slate-650 leading-relaxed mb-4">
               {selectedNode.description}
             </p>
 
             {/* Responsabilidades Académicas (Muy alineado a la rúbrica) */}
             <div className="mb-4">
-              <h6 className="text-[11px] font-bold text-indigo-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+              <h6 className="text-[11px] font-bold text-indigo-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
                 <Shield className="h-3.5 w-3.5" /> Responsabilidades
               </h6>
               <ul className="space-y-1.5">
                 {selectedNode.responsibilities.map((resp, idx) => (
-                  <li key={idx} className="text-xs text-slate-400 flex items-start gap-1.5">
-                    <span className="mt-1 flex-shrink-0 h-1.5 w-1.5 rounded-full bg-slate-600"></span>
-                    <span>{resp}</span>
-                  </li>
+                   <li key={idx} className="text-xs text-slate-600 flex items-start gap-1.5">
+                     <span className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full bg-indigo-400"></span>
+                     <span>{resp}</span>
+                   </li>
                 ))}
               </ul>
             </div>
 
             {/* Atributos y Métodos */}
-            <div className="grid grid-cols-2 gap-4 border-t border-slate-900 pt-3 mb-4">
+            <div className="grid grid-cols-2 gap-4 border-t border-slate-200 pt-3 mb-4">
               <div>
-                <h6 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Campos / Atributos</h6>
+                <h6 className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Campos / Atributos</h6>
                 {selectedNode.attributes.length > 0 ? (
                   nodeList(selectedNode.attributes)
                 ) : (
-                  <span className="text-xs text-slate-500 italic">Sifón de estado (ninguno)</span>
+                  <span className="text-xs text-slate-400 italic">Sifón de estado (ninguno)</span>
                 )}
               </div>
               <div>
-                <h6 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Métodos</h6>
+                <h6 className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Métodos</h6>
                 {nodeList(selectedNode.methods)}
               </div>
             </div>
           </div>
 
           {/* Código de Ilustración de este Espectro */}
-          <div className="mt-auto border-t border-slate-800 pt-4">
+          <div className="mt-auto border-t border-slate-200 pt-4">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-1">
-                <Code className="h-3.5 w-3.5 text-slate-400" />
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Código de la Clase</span>
+                <Code className="h-3.5 w-3.5 text-slate-500" />
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Código de la Clase</span>
               </div>
-              <div className="flex bg-slate-900 rounded p-0.5 border border-slate-800">
+              <div className="flex bg-slate-200 rounded p-0.5 border border-slate-300">
                 <button
                   onClick={() => setLang("java")}
-                  className={`text-[9px] px-2 py-0.5 rounded font-bold transition cursor-pointer ${lang === "java" ? "bg-indigo-600 text-white shadow" : "text-slate-400 hover:text-slate-200"}`}
+                  className={`text-[9px] px-2 py-0.5 rounded font-bold transition cursor-pointer ${lang === "java" ? "bg-indigo-600 text-white shadow" : "text-slate-650 hover:text-slate-800"}`}
                 >
-                  Java (Recomendado)
+                  Java
                 </button>
                 <button
                   onClick={() => setLang("ts")}
-                  className={`text-[9px] px-2 py-0.5 rounded font-bold transition cursor-pointer ${lang === "ts" ? "bg-indigo-600 text-white shadow" : "text-slate-400 hover:text-slate-200"}`}
+                  className={`text-[9px] px-2 py-0.5 rounded font-bold transition cursor-pointer ${lang === "ts" ? "bg-indigo-600 text-white shadow" : "text-slate-650 hover:text-slate-800"}`}
                 >
                   TypeScript
                 </button>
               </div>
             </div>
 
-            <pre className="text-[11px] font-mono bg-slate-900 p-3 rounded border border-slate-800 max-h-[140px] overflow-y-auto text-slate-300">
+            <pre className="text-[11px] font-mono bg-slate-950 p-3 rounded border border-slate-900 max-h-[140px] overflow-y-auto text-slate-300">
               <code>{lang === "java" ? selectedNode.codeJava : selectedNode.codeTS}</code>
             </pre>
           </div>
@@ -473,7 +464,7 @@ function nodeList(list: string[]) {
   return (
     <div className="flex flex-col gap-1">
       {list.map(f => (
-        <code key={f} className="text-[10px] bg-slate-900 px-1.5 py-0.5 rounded border border-slate-800 text-indigo-300 font-mono w-max max-w-full truncate">
+        <code key={f} className="text-[10px] bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-100 text-indigo-700 font-mono w-max max-w-full truncate">
           {f}
         </code>
       ))}

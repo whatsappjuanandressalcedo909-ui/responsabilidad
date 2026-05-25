@@ -115,13 +115,13 @@ public class AprobadorAsistente extends BaseAprobador {
   };
 
   return (
-    <div id="ejercicio-practico" className="bg-[#0f172a]/60 p-5 rounded-xl border border-slate-800/80 flex flex-col gap-6 font-sans">
+    <div id="ejercicio-practico" className="bg-white p-5 rounded-xl border border-slate-200 flex flex-col gap-6 font-sans shadow-xs">
       {/* Cabecera del Ejercicio */}
       <div>
-        <h4 className="text-sm font-semibold tracking-wide uppercase text-indigo-400 mb-1 flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-indigo-400 animate-pulse"></span> Ejercicio Práctico para los Compañeros
+        <h4 className="text-sm font-bold tracking-wide uppercase text-indigo-700 mb-1 flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-indigo-650 bg-indigo-600 animate-pulse"></span> Ejercicio Práctico para los Compañeros
         </h4>
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-slate-600">
           Usa este taller interactivo en clase. Tus compañeros pueden programar la solución e inspeccionar los criterios de aprobación académica de forma instantánea.
         </p>
       </div>
@@ -129,30 +129,30 @@ public class AprobadorAsistente extends BaseAprobador {
       {/* Grid: Enunciado vs Editor */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         {/* Enunciado del Taller */}
-        <div className="lg:col-span-5 bg-slate-950 p-4 rounded-lg border border-slate-800 flex flex-col justify-between">
+        <div className="lg:col-span-5 bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col justify-between shadow-xs">
           <div>
-            <div className="flex items-center gap-2 border-b border-slate-800/80 pb-3 mb-3">
-              <NotebookPen className="h-5 w-5 text-indigo-400 shrink-0" />
-              <h5 className="font-bold text-xs text-slate-200 uppercase tracking-wider">Taller: Evaluador Financiero Corporativo</h5>
+            <div className="flex items-center gap-2 border-b border-slate-200 pb-3 mb-3">
+              <NotebookPen className="h-5 w-5 text-indigo-600 shrink-0" />
+              <h5 className="font-bold text-xs text-slate-800 uppercase tracking-wider">Taller: Evaluador Financiero Corporativo</h5>
             </div>
 
             {/* Planteamiento (Rubrica Punto 1 y 2) */}
-            <div className="text-xs text-slate-300 leading-relaxed space-y-3">
+            <div className="text-xs text-slate-700 leading-relaxed space-y-3">
               <p>
-                <span className="font-bold text-indigo-400">Planteamiento:</span> Diseñe un sistema de autorización capaz de evaluar las solicitudes de fondos económicos mensuales generados por los empleados de una compañía. El límite jerárquico es contractual:
+                <span className="font-bold text-indigo-700">Planteamiento:</span> Diseñe un sistema de autorización capaz de evaluar las solicitudes de fondos económicos mensuales generados por los empleados de una compañía. El límite jerárquico es contractual:
               </p>
               
-              <ul className="space-y-1.5 list-disc pl-4 text-slate-400">
-                <li><strong className="text-slate-300">Asistente:</strong> Aprueba compras menores a <strong className="text-slate-300">$100 USD</strong>.</li>
-                <li><strong className="text-slate-300">Gerente:</strong> Aprueba compras de <strong className="text-slate-300">$100 USD a $1,000 USD</strong>.</li>
-                <li><strong className="text-slate-300">Director CFO:</strong> Aprueba compras de <strong className="text-slate-300">$1,000 USD a $5,000 USD</strong>.</li>
-                <li><strong className="text-slate-300">Comité Ejecutivo:</strong> Aprueba gastos de <strong className="text-slate-300">$5,000 USD en adelante</strong> (Monto máximo absoluto $10,000 USD, mayor se rechaza).</li>
+              <ul className="space-y-1.5 list-disc pl-4 text-slate-600">
+                <li><strong className="text-slate-800">Asistente:</strong> Aprueba compras menores a <strong className="text-slate-800">$100 USD</strong>.</li>
+                <li><strong className="text-slate-800">Gerente:</strong> Aprueba compras de <strong className="text-slate-800">$100 USD a $1,000 USD</strong>.</li>
+                <li><strong className="text-slate-800">Director CFO:</strong> Aprueba compras de <strong className="text-slate-800">$1,000 USD a $5,000 USD</strong>.</li>
+                <li><strong className="text-slate-800">Comité Ejecutivo:</strong> Aprueba gastos de <strong className="text-slate-800">$5,000 USD en adelante</strong> (Monto máximo absoluto $10,000 USD, mayor se rechaza).</li>
               </ul>
 
               {/* Clases sugeridas e Instrucciones (Rubrica Punto 3 y 4) */}
-              <div className="bg-slate-900/60 p-3 rounded border border-slate-800/80 mt-2">
-                <span className="font-bold text-[10px] text-indigo-400 uppercase tracking-wider block mb-1">Estructura Sugerida</span>
-                <p className="text-[11px] text-slate-400 leading-relaxed">
+              <div className="bg-indigo-50/60 p-3 rounded border border-indigo-200 mt-2">
+                <span className="font-bold text-[10px] text-indigo-700 uppercase tracking-wider block mb-1">Estructura Sugerida</span>
+                <p className="text-[11px] text-slate-600 leading-relaxed">
                   Cree una clase abstracta <code>AprobadorBase</code> con campo <code>next</code> y método <code>procesarCompra()</code>. Implemente las clases derivadas: <code>AsistenteAprobador</code>, <code>GerenteAprobador</code>, <code>CFOAprobador</code> y configúrelas en serie.
                 </p>
               </div>
@@ -160,9 +160,9 @@ public class AprobadorAsistente extends BaseAprobador {
           </div>
 
           {/* Resultado esperado */}
-          <div className="mt-4 border-t border-slate-800 pt-3">
-            <span className="font-bold text-[10px] text-indigo-400 uppercase tracking-widest block mb-1">Resultado Esperado (Output)</span>
-            <pre className="text-[10px] font-mono bg-slate-900 p-2.5 rounded text-amber-300 leading-tight">
+          <div className="mt-4 border-t border-slate-200 pt-3">
+            <span className="font-bold text-[10px] text-indigo-700 uppercase tracking-widest block mb-1">Resultado Esperado (Output)</span>
+            <pre className="text-[10px] font-mono bg-white p-2.5 border border-slate-200 rounded text-amber-850 text-amber-800 leading-tight">
 {`Petición por $75 USD -> Aprobado por Asistente.
 Petición por $450 USD -> Aprobado por Gerente.
 Petición por $12,000 USD -> Rechazado por exceso bancario.`}
@@ -172,13 +172,13 @@ Petición por $12,000 USD -> Rechazado por exceso bancario.`}
 
         {/* Editor del Alumno y Evaluación */}
         <div className="lg:col-span-7 flex flex-col gap-4">
-          <div className="bg-slate-950 rounded-lg border border-slate-800 flex flex-col justify-between">
+          <div className="bg-slate-50 rounded-lg border border-slate-200 flex flex-col justify-between shadow-3xs">
             {/* Nav del Editor */}
-            <div className="bg-slate-900 px-4 py-2 flex justify-between items-center rounded-t-lg border-b border-slate-800">
-              <span className="text-[10px] uppercase font-bold text-slate-450 tracking-wider flex items-center gap-1.5">
-                <Code className="h-4 w-4 text-indigo-400" /> Workbench de Solución de Alumnos
+            <div className="bg-slate-200/60 px-4 py-2 flex justify-between items-center rounded-t-lg border-b border-slate-200">
+              <span className="text-[10px] uppercase font-bold text-slate-700 tracking-wider flex items-center gap-1.5">
+                <Code className="h-4 w-4 text-indigo-600" /> Workbench de Solución de Alumnos
               </span>
-              <span className="text-[9px] bg-indigo-500/10 text-indigo-300 px-2 py-0.5 rounded font-mono border border-indigo-500/15">
+              <span className="text-[9px] bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded font-mono border border-indigo-200">
                 Evaluador Dinámico
               </span>
             </div>
@@ -188,7 +188,7 @@ Petición por $12,000 USD -> Rechazado por exceso bancario.`}
               <div>
                 <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Código en TypeScript o Java</label>
                 <textarea
-                  className="w-full h-[180px] bg-slate-900 font-mono text-[11px] text-slate-200 border border-slate-800 rounded p-3 focus:outline-none focus:border-indigo-500"
+                  className="w-full h-[180px] bg-white text-slate-800 font-mono text-[11px] border border-slate-200 rounded p-3 focus:outline-none focus:border-indigo-500"
                   value={exerciseCode}
                   onChange={e => setExerciseCode(e.target.value)}
                 />
@@ -199,7 +199,7 @@ Petición por $12,000 USD -> Rechazado por exceso bancario.`}
                 <input
                   type="text"
                   placeholder="Ej: Creamos cuatro eslabones y los vinculamos en Main mediante setNext."
-                  className="w-full bg-slate-900 text-xs text-slate-200 border border-slate-800 rounded px-3 py-2 focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-white text-xs text-slate-800 border border-slate-200 rounded px-3 py-2 focus:outline-none focus:border-indigo-500"
                   value={designDescription}
                   onChange={e => setDesignDescription(e.target.value)}
                 />
@@ -226,36 +226,36 @@ Petición por $12,000 USD -> Rechazado por exceso bancario.`}
           {/* Resultado de la Calificación por la Rúbrica */}
           {evaluation && (
             <div className={`p-4 rounded-xl border animate-in fade-in slide-in-from-bottom-2 duration-300 ${
-              evaluation.approved ? "bg-emerald-950/20 border-emerald-500/40" : "bg-rose-950/20 border-rose-500/40"
+              evaluation.approved ? "bg-emerald-50 border-emerald-200 text-emerald-900" : "bg-rose-50 border-rose-200 text-rose-900"
             }`}>
               <div className="flex justify-between items-center mb-3">
                 <div className="flex items-center gap-2">
-                  <Award className={`h-6 w-6 ${evaluation.approved ? "text-emerald-400" : "text-amber-400"}`} />
+                  <Award className={`h-6 w-6 ${evaluation.approved ? "text-emerald-600" : "text-rose-600"}`} />
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest block text-slate-400">Retroalimentación Docente (Rúbrica)</span>
-                    <h6 className="font-bold text-sm text-slate-200">
+                    <span className="text-[10px] font-bold uppercase tracking-widest block text-slate-500">Retroalimentación Docente (Rúbrica)</span>
+                    <h6 className="font-bold text-sm">
                       Estado: {evaluation.approved ? "✅ SOLUCIÓN APROBADA" : "⚠️ REQUIERE MODIFICACIÓN"}
                     </h6>
                   </div>
                 </div>
                 <div className="text-right">
                   <span className="text-[9px] uppercase font-bold text-slate-500 block leading-none">Calificación</span>
-                  <span className={`text-xl font-mono font-bold ${evaluation.score >= 3.0 ? "text-emerald-400" : "text-rose-400"}`}>
+                  <span className={`text-xl font-mono font-bold ${evaluation.score >= 3.0 ? "text-emerald-700" : "text-rose-700"}`}>
                     {evaluation.score.toFixed(1)} / 5.0
                   </span>
                 </div>
               </div>
 
-              <p className="text-xs text-slate-300 leading-relaxed mb-3">
+              <p className="text-xs text-slate-700 leading-relaxed mb-3">
                 {evaluation.feedback}
               </p>
 
               {evaluation.suggestions && evaluation.suggestions.length > 0 && (
-                <div className="border-t border-slate-800/40 pt-2">
-                  <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Sugerencias pedagógicas</span>
+                <div className="border-t border-slate-200 pt-2">
+                  <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest block mb-1">Sugerencias pedagógicas</span>
                   <ul className="list-disc pl-4 space-y-1">
                     {evaluation.suggestions.map((sug, idx) => (
-                      <li key={idx} className="text-[11px] text-slate-400">
+                      <li key={idx} className="text-[11px] text-slate-600">
                         {sug}
                       </li>
                     ))}
@@ -268,9 +268,9 @@ Petición por $12,000 USD -> Rechazado por exceso bancario.`}
       </div>
 
       {/* Preguntas de Reflexión (Card quiz - excelente para la dinámica grupal) */}
-      <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
-        <h5 className="text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-3 flex items-center gap-1.5 font-sans">
-          <HelpCircle className="h-4 w-4 text-indigo-400" /> Preguntas de Reflexión para el Auditorio
+      <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-3xs">
+        <h5 className="text-[10px] uppercase font-bold text-slate-600 tracking-wider mb-3 flex items-center gap-1.5 font-sans">
+          <HelpCircle className="h-4 w-4 text-indigo-600" /> Preguntas de Reflexión para el Auditorio
         </h5>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -280,21 +280,21 @@ Petición por $12,000 USD -> Rechazado por exceso bancario.`}
               <div
                 key={idx}
                 className={`p-3.5 rounded-lg border transition cursor-pointer select-none font-sans ${
-                  isOpen ? "bg-slate-900 border-indigo-500/40 shadow-inner" : "bg-slate-900/30 border-slate-800 hover:border-slate-755 hover:border-indigo-950"
+                  isOpen ? "bg-white border-indigo-500/50 shadow-inner" : "bg-white border-slate-200 hover:border-slate-350"
                 }`}
                 onClick={() => setActiveQuizQuestion(isOpen ? null : idx)}
               >
                 <div className="flex justify-between items-start gap-1">
-                  <span className="text-xs font-bold text-slate-205 text-slate-200">
+                  <span className="text-xs font-bold text-slate-800">
                     {quiz.q}
                   </span>
-                  <span className="text-[10px] text-indigo-400 font-bold shrink-0">
+                  <span className="text-[10px] text-indigo-600 font-bold shrink-0">
                     {isOpen ? "Ocultar" : "Revelar"}
                   </span>
                 </div>
                 
                 {isOpen && (
-                  <p className="text-[11px] text-slate-400 mt-2.5 pt-2 border-t border-slate-800/80 leading-relaxed whitespace-pre-line animate-in fade-in duration-250">
+                  <p className="text-[11px] text-slate-650 text-slate-600 mt-2.5 pt-2 border-t border-slate-200 leading-relaxed whitespace-pre-line animate-in fade-in duration-250">
                     {quiz.a}
                   </p>
                 )}

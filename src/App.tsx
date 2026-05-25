@@ -16,7 +16,8 @@ export default function App() {
     { id: "presentacion" as SectionTab, label: "Presentación (Diapo)", icon: BookOpen },
     { id: "uml" as SectionTab, label: "Diagrama UML clases", icon: Layers },
     { id: "simulador" as SectionTab, label: "Simulador de Flujo", icon: Activity },
-    { id: "codigo" as SectionTab, label: "Workbench Código (IDE)", icon: Code }
+    { id: "codigo" as SectionTab, label: "Workbench Código (IDE)", icon: Code },
+    { id: "talleres" as SectionTab, label: "Taller Académico", icon: GraduationCap }
   ];
 
   // Permite saltar entre secciones de forma dinámica desde los slides interactivos
@@ -31,23 +32,23 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#020617] font-sans text-slate-200 flex flex-col justify-between selection:bg-indigo-500/30 selection:text-indigo-200 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col justify-between selection:bg-indigo-500/15 selection:text-indigo-900 relative overflow-hidden">
       
       {/* Glows de fondo decorativos de Immersive UI */}
-      <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-[20%] left-[-10%] w-[300px] h-[300px] bg-purple-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-[20%] left-[-10%] w-[300px] h-[300px] bg-purple-500/5 rounded-full blur-[100px] pointer-events-none"></div>
 
       {/* Cabecera Principal */}
-      <header className="border-b border-slate-800/80 bg-[#0f172a]/80 sticky top-0 z-50 backdrop-blur-md px-6 py-4">
+      <header className="border-b border-slate-200/80 bg-white/90 sticky top-0 z-50 backdrop-blur-md px-6 py-4 shadow-sm">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-xl bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-black text-sm shadow-md shadow-indigo-500/20">
+            <div className="h-9 w-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-indigo-500 flex items-center justify-center text-white font-black text-sm shadow-md shadow-indigo-600/20">
               CoR
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <h1 className="text-sm font-bold uppercase tracking-widest text-slate-100">Chain of Responsibility</h1>
-                <span className="text-[9px] bg-indigo-500/20 text-indigo-300 font-bold px-1.5 py-0.2 rounded border border-indigo-500/30">
+                <h1 className="text-sm font-bold uppercase tracking-widest text-slate-900">Chain of Responsibility</h1>
+                <span className="text-[9px] bg-indigo-50 text-indigo-700 font-bold px-1.5 py-0.2 rounded border border-indigo-200">
                   UPC 2026
                 </span>
               </div>
@@ -58,7 +59,7 @@ export default function App() {
           </div>
 
           {/* Menú de Navegación de Pestañas con estilo Immersive UI */}
-          <nav className="flex bg-slate-950/60 p-1 rounded-xl border border-slate-800 overflow-x-auto max-w-full">
+          <nav className="flex bg-slate-100 p-1 rounded-xl border border-slate-200 overflow-x-auto max-w-full">
             {tabItems.map(item => {
               const Icon = item.icon;
               const isSelected = activeTab === item.id;
@@ -68,8 +69,8 @@ export default function App() {
                   onClick={() => setActiveTab(item.id)}
                   className={`flex items-center gap-2 text-xs font-bold px-3 py-2 rounded-lg transition shrink-0 cursor-pointer ${
                     isSelected
-                      ? "bg-indigo-500 text-white shadow-lg shadow-indigo-500/20 font-sans"
-                      : "text-slate-400 hover:text-slate-200"
+                      ? "bg-white text-indigo-700 shadow border border-slate-200/50 font-sans"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                   }`}
                 >
                   <Icon className="h-4 w-4 shrink-0" /> {item.label}
@@ -106,9 +107,9 @@ export default function App() {
         <aside className="xl:col-span-3 sticky top-[95px]">
           <div className="flex flex-col gap-5">
             {/* Checkbox de Rúbricas Académicas Completadas */}
-            <div className="bg-[#0f172a]/50 p-4.5 rounded-xl border border-slate-800">
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2 flex items-center gap-1.5">
-                <ShieldCheck className="h-4 w-4 text-indigo-400" /> Lista de Evaluación Rúbrica UPC
+            <div className="bg-white p-4.5 rounded-xl border border-slate-200 shadow-sm">
+              <span className="text-[10px] font-bold text-slate-700 uppercase tracking-widest block mb-2.5 flex items-center gap-1.5">
+                <ShieldCheck className="h-4 w-4 text-indigo-600" /> Lista de Evaluación Rúbrica UPC
               </span>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-1 gap-2">
@@ -124,8 +125,8 @@ export default function App() {
                   { check: true, label: "Análisis de Ventajas y Desventajas" },
                   { check: true, label: "Taller Práctico con Respuestas de Reflexión" }
                 ].map(item => (
-                  <div key={item.label} className="flex items-center gap-2 text-xs text-slate-400">
-                    <CheckCircle2 className="h-4 w-4 text-indigo-400 shrink-0" />
+                  <div key={item.label} className="flex items-center gap-2 text-xs text-slate-600">
+                    <CheckCircle2 className="h-4 w-4 text-indigo-600 shrink-0" />
                     <span className="truncate">{item.label}</span>
                   </div>
                 ))}
@@ -136,15 +137,15 @@ export default function App() {
       </main>
 
       {/* Pie de Página */}
-      <footer className="border-t border-slate-800/80 bg-[#020617] py-6 px-6 z-10 relative">
+      <footer className="border-t border-slate-200 bg-white py-6 px-6 z-10 relative">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <span className="text-xs text-slate-500 text-center sm:text-left">
             © 2026 Universidad Popular del Cesar • Especialización en Ingeniería de Software. Actividad de Aprendizaje Unidad 3.
           </span>
           <div className="flex items-center gap-3">
-            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Diseñado en la upc</span>
-            <div className="h-2 w-2 rounded-full bg-indigo-500 animate-pulse"></div>
-            <span className="text-[10px] font-mono text-indigo-400 font-bold">Estado: Listo</span>
+            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Diseñado para Defensa de 45 minutos</span>
+            <div className="h-2 w-2 rounded-full bg-indigo-550 bg-indigo-600 animate-pulse"></div>
+            <span className="text-[10px] font-mono text-indigo-600 font-bold">Estado: Listo</span>
           </div>
         </div>
       </footer>
