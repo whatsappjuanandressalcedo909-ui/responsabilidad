@@ -6,8 +6,9 @@ import InteractiveUML from "./components/InteractiveUML";
 import VisualSimulator from "./components/VisualSimulator";
 import CodeViewer from "./components/CodeViewer";
 import InteractiveExercise from "./components/InteractiveExercise";
+import DemoPatron from "./components/DemoPatron";
 
-type SectionTab = "presentacion" | "uml" | "simulador" | "codigo" | "talleres";
+type SectionTab = "presentacion" | "uml" | "simulador" | "codigo" | "talleres" | "aplicado";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<SectionTab>("presentacion");
@@ -17,7 +18,7 @@ export default function App() {
     { id: "uml" as SectionTab, label: "Diagrama UML clases", icon: Layers },
     { id: "simulador" as SectionTab, label: "Simulador de Flujo", icon: Activity },
     { id: "codigo" as SectionTab, label: "Workbench Código (IDE)", icon: Code },
-    { id: "talleres" as SectionTab, label: "Taller Académico", icon: GraduationCap }
+    { id: "aplicado" as SectionTab, label: "Ejemplo Aplicado", icon: ShieldCheck }
   ];
 
   // Permite saltar entre secciones de forma dinámica desde los slides interactivos
@@ -28,6 +29,8 @@ export default function App() {
       setActiveTab("uml");
     } else if (sectionId === "ejercicios") {
       setActiveTab("talleres");
+    } else if (sectionId === "ejemplo-aplicado") {
+      setActiveTab("aplicado");
     }
   };
 
@@ -101,6 +104,9 @@ export default function App() {
           {activeTab === "talleres" && (
             <InteractiveExercise />
           )}
+          {activeTab === "aplicado" && (
+            <DemoPatron />
+          )}
         </section>
 
         {/* Sidebar Lateral: Rúbrica de la Defensa */}
@@ -143,7 +149,7 @@ export default function App() {
             © 2026 Universidad Popular del Cesar • Especialización en Ingeniería de Software. Actividad de Aprendizaje Unidad 3.
           </span>
           <div className="flex items-center gap-3">
-            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Diseñado para la upc</span>
+            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Diseñado para la UPC s</span>
             <div className="h-2 w-2 rounded-full bg-indigo-550 bg-indigo-600 animate-pulse"></div>
             <span className="text-[10px] font-mono text-indigo-600 font-bold">Estado: Listo</span>
           </div>
