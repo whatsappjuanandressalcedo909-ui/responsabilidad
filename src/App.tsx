@@ -143,7 +143,7 @@ export default function App() {
             © 2026 Universidad Popular del Cesar • Especialización en Ingeniería de Software. Actividad de Aprendizaje Unidad 3.
           </span>
           <div className="flex items-center gap-3">
-            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Diseñado para Defensa de 45 minutos</span>
+            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Diseñado para la upc</span>
             <div className="h-2 w-2 rounded-full bg-indigo-550 bg-indigo-600 animate-pulse"></div>
             <span className="text-[10px] font-mono text-indigo-600 font-bold">Estado: Listo</span>
           </div>
