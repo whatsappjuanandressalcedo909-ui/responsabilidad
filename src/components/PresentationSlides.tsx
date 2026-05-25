@@ -41,7 +41,7 @@ export default function PresentationSlides({ onGoToSection }: PresentationSlides
             </div>
             <div>
               <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest block mb-0.5">Elaborado por</span>
-              <span className="text-xs font-bold text-indigo-300 font-serif">Juan Salcedo ; Andres Trespalacios</span>
+              <span className="text-xs font-bold text-indigo-300 font-serif">Juan Salcedo ; Andres Trespalacios ; Breyner Ortiz</span>
             </div>
           </div>
 
